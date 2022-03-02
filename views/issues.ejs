@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="css/styles.css">
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name">CMS</span>
+    </div>
+      <ul class="nav-links">
+        <li>
+          <a href="#" class="active">
+            <i class='bx bx-grid-alt' ></i>
+            <span class="links_name">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="form.html">
+            <i class='bx bx-box' ></i>
+            <span class="links_name">Raise an Issue</span>
+          </a>
+        </li>
+        <li>
+          <a href="/urgent">
+            <i class='bx bx-list-ul' ></i>
+            <span class="links_name">Urgent Need</span>
+          </a>
+        </li>
+        <li>
+          <a href="/resolved">
+            <i class='bx bx-pie-chart-alt-2' ></i>
+            <span class="links_name">Resolved</span>
+          </a>
+        </li>        
+        <li>
+          <a href="https://ancient-journey-82562.herokuapp.com/">
+            <i class='bx bx-message' ></i>
+            <span class="links_name">Chat</span>
+          </a>
+        </li>
+        <li class="log_out">
+          <a href="/">
+            <i class='bx bx-log-out'></i>
+            <span class="links_name">Log out</span>
+          </a>
+        </li>
+      </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="dashboard">Dashboard</span>
+      </div>
+      
+      <div class="dropdown">
+        <button class="dropbtn">Finance</button>
+        <div class="dropdown-content">
+          <a class="button1" href="/finance">Finance</a>
+          <a class ="button2" href="/transportIssues">Transportation</a>
+          <a class ="button3" href="/accountIssues">Accounting</a>
+          <a class="button4" href="/generalIssues">Other Issues</a>
+        </div>
+    </nav>
+
+    <div class="home-content">
+      <div class="overview-boxes">
+        <div class="box resolvedBox">
+          <div class="right-side">
+            <div class="box-topic">Issues Resolved</div>
+            <div class="number number-issuesresolved"><%= CountFinanceR %> </div>
+            <div class="indicator">
+            </div>
+          </div>
+          <i class="fas fa-check fa-2x" ></i>
+        </div>
+        <div class="box pendingBox">
+          <div class="right-side">
+            <div class="box-topic">Issues Pending</div>
+            <div class="number number-issuespending"><%=CountPFinance%></div>
+            <div class="indicator">
+            </div>
+          </div>
+          <i class="fas fa-cogs fa-2x"></i>
+        </div>
+        <div class="box timeBox">
+          <div class="right-side">
+            <div class="box-topic">Daily Issues </div>
+            <div class="number number-issuesdaily"><%=todayDate%></div>
+          </div>
+          <i class="fas fa-clock fa-2x"></i>
+        </div>
+        <div class="box peopleBox">
+          <div class="right-side">
+            <div class="box-topic">Urgent Issues</div>
+            <div class="number number-issuesoverdue"><%=CountUFinanace%> </div>
+          </div>
+          <i class="fas fa-user-friends fa-2x"></i>
+        </div>
+      </div>
+
+      <div class="sales-boxes">
+        <div class="recent-sales box">
+          <div class="title">Recent Issues</div>
+          <br>
+          <div class="sales-details">
+             <ul class="details">
+              <li class="topic">Date</li>
+              <% problems.forEach(function(item){ %>
+                <form action="/changing" method="post">
+                <div class="formClass">
+                <li><input class="checkbox" type="checkbox" name = "checkthis" value="<%=item._id%>" onChange = "this.form.submit()"><a class="date" href="#"><%=item.Date%></a></li>
+              </div>
+            </form>
+                <% }); %>
+          
+            </ul>
+            <ul class="details">
+            <li class="topic">Issues</li>
+           <%   problems.forEach(function(item){ %>
+              <li><a id="newPrb" class="issue1" href="/chats/<%=item.Issues%>"><%= item.Issues%> </a></li>
+           <%   }) %>
+           
+          </ul>
+          <ul class="details">
+            <li class="topic location">Status</li>
+            <% problems.forEach(function(item){ %>
+              <li><a class="status2" href="#"><%= item.Status %></a></li>
+              <% }); %>
+            
+           
+          </ul>
+          <ul class="details">
+            <li class="topic status">Location</li>
+            <% problems.forEach(function(item){ %>
+              <li><a class="location3" href="#"><%= item.Location %></a></li>
+              <% }); %>
+          
+          </ul>
+          </div>
+        </div>
+        <div class="top-sales box">
+          <div class="title"></div>
+          <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+          <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+          <script>
+           var a =  document.getElementById("newPrb");
+             a.addEventListener("click",function(){
+                console.log(a.innerText);
+             });
+          </script>
+          <script>
+            var totalnumber =((<%=CountUFinanace%>/(<%=CountTFinance%>+<%=CountFinanceR%>))*100)
+           window.onload = function() { 
+   num1= ((<%=CountFinanceR%>/(<%=CountTFinance%>+<%=CountFinanceR%>))*100);
+   var num2=((<%=CountPFinance%>/(<%=CountTFinance%>+<%=CountFinanceR%>))*100);
+  //  var num3=((<%=todayDate%>/<%=CountTFinance%>)*100);
+   var num4=totalnumber
+
+   var chart = new CanvasJS.Chart("chartContainer", {
+       animationEnabled: true,
+       title: {
+           text: "Pie Chart"
+       },
+       data: [{
+           type: "pie",
+           startAngle: 240,
+           yValueFormatString: "##0.00\"%\"",
+           indexLabel: "{label} {y}",
+           dataPoints: [
+               {y: num1, label: "Resolved"},
+               {y: num2, label: "Pending"},
+              //  {y: num3, label: "Daily"},
+               {y: num4, label: "Urgent"}
+           ]
+       }]
+   });
+   chart.render();
+}
+          </script>
+      </div>
+      </div>
+    </div>
+  </section>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script src="javascript/index.js"></script>
+</body>
+</html> 

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+        <!--  jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+    <title> Form </title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/location.css">
+</head>
+
+<body>
+    <div class="whole">
+        <h1 class="get-in-touch title"> Issue Related Information Form </h1>
+    <form action="/finance" method="post" autocomplete="Off">
+        <div class="row">
+            <div class="col col-md-3 fcol ">
+                <input type="text" class="form-control input-text xyz"  placeholder="First name">
+            </div>
+            <div class="col col-md-3 lcol ">
+                <input type="text" class="form-control xyz" placeholder="Last name">
+            </div>
+        </div>
+        <div class="col-md-3 cool1 " >
+            <label for="openingDate" class="form-label xyz" style="color: #5543ca;"> Opening Date: </label>
+            <input type="text" id="Date" name="openingDate" class="form-control xyz"
+                placeholder="Ex: 4 January 2021"> 
+        
+            </div>
+       
+        <div class="form-field col-md-3 cool1">
+        <label for="location" class="form-label xyz"  style="color: #5543ca;">Location:</label>
+        <div class="autocomplete-container" id="autocomplete-container"></div>
+    </div>
+
+
+        <div class="col-md-3 cool1">
+            <label for="status" class="form-label" id="situationLabel" style="color: #5543ca;">Status of situation:</label>
+            <select name="Status" class="form-select xyz " id="">
+                <option value="">Choose..</option>
+                <option value="Urgent">Urgent</option>
+                <option value="Closed">Alert</option>
+                <option value="Pending">Pending</option>
+                <option value="In process">In process</option>
+            </select>
+        </div>
+        <div class="col-md-4 cool1">
+            <label for="Department" class="form-label" style="color: #5543ca;">Department:</label>
+            <select name="Department" class="form-select xyz" id="">
+                <option value="">Choose..</option>
+                <option value="Finance">Finance</option>
+                <option value="Accounts">Accounts</option>
+                <option value="Transportation">Transportation</option>
+                <option value="OtherIssues">OtherIssues</option>
+            </select>
+        </div>
+        <div class="col-md-6 form-floating cool1">
+            <textarea class="form-control xyz" name="newIssue" placeholder="Leave a comment here" style="background-color: ;"
+                id="floatingTextarea"></textarea>
+            <label for="floatingTextarea" >Issue</label>
+        </div>
+        <div class="col-md-6 form-floating cool1">
+            <textarea class="form-control xyz" name="IssueDescription" placeholder="Leave a comment here" style="background-color: ;"
+                id="floatingTextarea2" style="height: 100px"></textarea>
+            <label for="DetailedIssue" >Issue Description</label>
+        </div>
+        <div class="cool2">
+
+            <button type="submit"class="btn btn-outline-secondary col-md-1 " style="color: aliceblue;">Submit</button>
+
+        </div>
+    </form>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    
+
+    </div>
+
+    <script src="javascript/location.js"></script>
+    <script>
+        $(document).ready(function(){
+          var date_input=$('input[name="openingDate"]'); //our date input has the name "date"
+          var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+          var options={
+            format: 'dd MM yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+          };
+          date_input.datepicker(options);
+        })
+    </script>
+
+    
+</body>
+
+</html> 
